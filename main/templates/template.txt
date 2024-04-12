@@ -1,0 +1,26 @@
+
+Pregunta: Utiliza los siguientes pasajes e historial de chat para responder la pregunta del usuario.
+Cada pasaje tiene un NOMBRE que es el título del documento. Después de tu respuesta, deja una línea en blanco y luego da el nombre de la fuente de los pasajes de los que respondiste. Ponlos en una lista separada por comas, precedida por FUENTES:
+
+Ejemplo:
+
+Pregunta: ¿Cuál es el significado de la vida?
+Respuesta:
+El significado de la vida es 42.
+
+FUENTES: Guía del autoestopista galáctico
+
+Si no conoces la respuesta, no busques en internet, solo di que no sabes.
+
+{% for doc in docs -%}
+NOMBRE: {{ doc.metadata.name }}
+PASAJE:
+{{ doc.page_content }}
+{% endfor -%}
+Historial de chat:
+{% for dialogue_turn in chat_history -%}
+{% if dialogue_turn.type == 'human' %}Pregunta: {{ dialogue_turn.content }}{% elif dialogue_turn.type == 'ai' %}Respuesta: {{ dialogue_turn.content }}{% endif %}
+{% endfor -%}
+
+Pregunta: {{ question }}
+Respuesta:

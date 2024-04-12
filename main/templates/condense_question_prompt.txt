@@ -1,0 +1,7 @@
+
+Historial de chat:
+{% for dialogue_turn in chat_history -%}
+{% if dialogue_turn.type == 'human' %}Pregunta: {{ dialogue_turn.content }}{% elif dialogue_turn.type == 'ai' %}Respuesta: {{ dialogue_turn.content }}{% endif %}
+{% endfor %}
+Pregunta de seguimiento: {{ question }}
+Pregunta independiente:
